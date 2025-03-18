@@ -135,7 +135,9 @@ alias ls='ls --color=auto'      # Enable color for ls
 alias ll='ls -lah'              # Detailed list including hidden files
 alias la='ls -A'                # List all except . and ..
 alias l='ls -CF'                # Compact view
-
+alias fd='fdfind'
+alias v='fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
+alias bc='batcat'
 alias cp='cp -i'                # Prompt before overwriting files
 alias mv='mv -i'                # Prompt before moving files
 alias rm='rm -i'                # Prompt before deleting files
@@ -209,4 +211,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-eval "$(fzf --zsh)"
+# Start tmux automatically if not inside a tmux session
+
+# Start tmux automatically if not inside a tmux session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    exec tmux
+fi
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
